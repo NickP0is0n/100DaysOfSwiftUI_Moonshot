@@ -11,16 +11,9 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         NavigationStack {
-            NavigationLink {
-                Text("Detailed View")
-            } label: {
-                VStack {
-                    Text("This is a label")
-                    Text("This is also a label")
-                    Image("aesthetic")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 100, height: 100)
+            List(0..<100) { row in
+                NavigationLink("Row \(row)") {
+                    Text("Details about row \(row)")
                 }
             }
             .navigationTitle("SwiftUI")
