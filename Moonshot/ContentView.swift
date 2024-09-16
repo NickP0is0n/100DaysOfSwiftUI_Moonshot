@@ -9,16 +9,14 @@ import SwiftUI
 
 struct ContentView: View {
     let layout = [
-        GridItem(.fixed(80)),
-        GridItem(.fixed(80)),
-        GridItem(.fixed(80))
+        GridItem(.adaptive(minimum: 80))
     ]
      
     var body: some View {
         ScrollView {
             LazyVGrid(columns: layout) {
                 ForEach(0..<1000) {
-                    Text("Item \($0)") 
+                    Text("Item \($0)")
                 }
             }
         }
