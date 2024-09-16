@@ -9,10 +9,15 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        Image("aesthetic")
-            .resizable()
-            .scaledToFit()
-            .frame(width: 600, height: 400)
+        ScrollView {
+            VStack(spacing: 10) {
+                ForEach(0..<100) {
+                    Text("Title \($0)")
+                        .font(.title)
+                }
+            }
+            .frame(maxWidth: .infinity)
+        }
     }
 }
 
