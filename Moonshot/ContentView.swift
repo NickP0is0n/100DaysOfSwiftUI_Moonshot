@@ -10,8 +10,8 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         Image("aesthetic")
-            .frame(width: 200, height: 200)
-            .clipped()
+            .resizable()
+            .frame(width: 600, height: 200)
     }
 }
 
