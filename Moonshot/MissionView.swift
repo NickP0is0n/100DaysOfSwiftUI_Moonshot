@@ -23,6 +23,10 @@ struct MissionView: View {
                     .resizable()
                     .scaledToFit()
                     .frame(width: 200, height: 200)
+                
+                Text(mission.launchDate?.formatted(date: .long, time: .omitted) ?? "Have not been launched")
+                    .padding(.vertical)
+                    .font(.headline.bold())
                  
                 VStack(alignment: .leading) {
                     Rectangle()
