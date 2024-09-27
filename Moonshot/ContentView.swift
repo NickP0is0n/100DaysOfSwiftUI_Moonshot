@@ -13,14 +13,11 @@ struct MissionGrid: View {
     ]
     
     let missions: [Mission]
-    let astronauts: [String: Astronaut]
     
     var body: some View {
         LazyVGrid(columns: columns) {
             ForEach(missions) { mission in
-                NavigationLink {
-                     MissionView(mission: mission, astronauts: astronauts)
-                } label: {
+                NavigationLink(value: mission) {
                     VStack {
                         Image(mission.image)
                             .resizable()
@@ -56,14 +53,11 @@ struct MissionGrid: View {
 
 struct MissionList: View {
     let missions: [Mission]
-    let astronauts: [String: Astronaut]
     
     var body: some View {
         LazyVStack {
             ForEach(missions) { mission in
-                NavigationLink {
-                     MissionView(mission: mission, astronauts: astronauts)
-                } label: {
+                NavigationLink(value: mission) {
                     HStack {
                         Image(mission.image)
                             .resizable()
@@ -107,9 +101,9 @@ struct ContentView: View {
         NavigationStack {
             ScrollView {
                 if showAsList {
-                    MissionList(missions: missions, astronauts: astronauts)
+                    MissionList(missions: missions)
                 } else {
-                    MissionGrid(missions: missions, astronauts: astronauts)
+                    MissionGrid(missions: missions)
                 }
             }
             .navigationTitle("Moonshot")
@@ -119,6 +113,9 @@ struct ContentView: View {
                 Button(showAsList ? "Display as grid" : "Display as list") {
                     showAsList.toggle()
                 }
+            }
+            .navigationDestination(for: Mission.self) { selection in
+                MissionView(mission: selection, astronauts: astronauts)
             }
         }
     }
